@@ -35,4 +35,4 @@ for step in range(8):
 print("[END]")
 
 while True:
-    time.sleep(60)
+    time.sleep(300)
