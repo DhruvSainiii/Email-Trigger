@@ -3,7 +3,7 @@ import random
 class EmailEnv:
 
     def __init__(self):
-        self.reset()
+        self.state_data = None
 
     def reset(self):
         self.state_data = {
@@ -12,18 +12,20 @@ class EmailEnv:
             "engagement_score": round(random.uniform(0.2, 0.9), 2),
             "preferred_time": random.choice(["morning", "evening"])
         }
-        return self.state()
+
+        return self.state_data
 
     def state(self):
         return self.state_data
 
     def step(self, action):
+
         reward = 0
 
         user = self.state_data["user_type"]
         days = self.state_data["last_email_days"]
 
-        # 🎯 Smart reward logic
+        # 🎯 Reward Logic
         if action == "send_personalized":
             reward = 0.9 if user == "regular" else 0.4
 
@@ -36,15 +38,22 @@ class EmailEnv:
         elif action == "no_email":
             reward = 0.7 if user == "inactive" else 0.2
 
-       
+        # ❗ Penalty for spam
         if days < 2:
             reward -= 0.5
 
-
+        # ⭐ Bonus for timing
         if action == "send_personalized" and self.state_data["preferred_time"] == "evening":
             reward += 0.1
 
-
+        # update state
         self.state_data["last_email_days"] += 1
 
-        return self.state(), max(0, min(1, reward))
+        # clamp reward
+        reward = max(0, min(1, reward))
+
+        done = False
+
+        info = {}
+
+        return self.state(), reward, done, info
