@@ -6,14 +6,29 @@ print("[START]")
 
 state = env.reset()
 
-for step in range(5):
-    if state["user_active"]:
-        action = "send_promo"
-    else:
+for step in range(8):
+
+    user = state["user_type"]
+    days = state["last_email_days"]
+
+    # 🧠 Intelligent decision making
+    if days < 2:
         action = "no_email"
+
+    elif user == "regular":
+        action = "send_personalized"
+
+    elif user == "new":
+        action = "send_promo"
+
+    elif user == "inactive":
+        action = "no_email"
+
+    else:
+        action = "send_reminder"
 
     state, reward = env.step(action)
 
-    print(f"[STEP] Action={action}, Reward={reward}")
+    print(f"[STEP] step={step}, action={action}, reward={reward}, state={state}")
 
 print("[END]")
