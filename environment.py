@@ -36,15 +36,15 @@ class EmailEnv:
         elif action == "no_email":
             reward = 0.7 if user == "inactive" else 0.2
 
-        # 🚫 Spam penalty (VERY IMPORTANT)
+       
         if days < 2:
             reward -= 0.5
 
-        # ⏰ Time optimization bonus
+
         if action == "send_personalized" and self.state_data["preferred_time"] == "evening":
             reward += 0.1
 
-        # update state
+
         self.state_data["last_email_days"] += 1
 
         return self.state(), max(0, min(1, reward))
