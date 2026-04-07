@@ -1,4 +1,5 @@
 from environment import EmailEnv
+import time
 
 env = EmailEnv()
 
@@ -32,3 +33,6 @@ for step in range(8):
     print(f"[STEP] step={step}, action={action}, reward={reward}, state={state}")
 
 print("[END]")
+
+while True:
+    time.sleep(60)
