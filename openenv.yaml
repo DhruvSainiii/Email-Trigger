@@ -1,0 +1,10 @@
+name: email-trigger-env
+version: 1.0
+
+environment:
+  entry_point: environment.py
+
+tasks:
+  - easy
+  - medium
+  - hard

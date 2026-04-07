@@ -1,0 +1,5 @@
+tasks = [
+    {"name": "easy"},
+    {"name": "medium"},
+    {"name": "hard"}
+]

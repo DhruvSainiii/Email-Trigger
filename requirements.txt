@@ -1,0 +1,3 @@
+openai
+flask
+huggingface_hub
