@@ -75,7 +75,6 @@ def main():
 
     log_end(success, steps_taken, score, rewards)
 
-    time.sleep(300)
 
 if __name__ == "__main__":
     main()
