@@ -56,4 +56,4 @@ class EmailEnv:
 
         info = {}
 
-        return self.state(), reward, done, info
+        return self.state(), float(max(0, min(1, reward))), False, {}

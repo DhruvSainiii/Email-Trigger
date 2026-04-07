@@ -15,8 +15,9 @@ def reset():
 
     return {
         "observation": state,
-        "info": {},
-        "done": False
+        "reward": 0.0,
+        "done": False,
+        "info": {}
     }
 @app.post("/step")
 def step(action: dict):
