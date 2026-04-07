@@ -7,7 +7,6 @@ app = FastAPI()
 def root():
     return {"status": "running"}
 
-# ✅ RESET (OpenEnv style)
 @app.post("/reset")
 def reset():
     env = EmailEnv()
@@ -19,6 +18,8 @@ def reset():
         "done": False,
         "info": {}
     }
+
+
 @app.post("/step")
 def step(action: dict):
     env = EmailEnv()
