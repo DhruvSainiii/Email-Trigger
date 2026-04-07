@@ -1,20 +1,4 @@
-try:
-    from fastapi import FastAPI  # type: ignore[import]
-except ImportError:
-    class FastAPI:
-        def __init__(self, *args, **kwargs):
-            pass
-
-        def get(self, path):
-            def decorator(fn):
-                return fn
-            return decorator
-
-        def post(self, path):
-            def decorator(fn):
-                return fn
-            return decorator
-
+from fastapi import FastAPI
 from environment import EmailEnv
 
 app = FastAPI()
